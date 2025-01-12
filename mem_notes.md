@@ -63,3 +63,10 @@
 - `rBX`: **B**ase **X**tra (extra "B"ase)
 - `rBP`: **B**ase **P**ointer
 - `r12` to `r15`: Generally used for extended storage.
+
+### Floating-Point Registers
+
+| Register Set | Registers     | Description                             |
+| ------------ | ------------- | --------------------------------------- |
+| x87 FPU      | ST0 to ST7    | Stack of 8 floating-point registers     |
+| SSE          | XMM0 to XMM15 | 128-bit registers for SIMD instructions |
