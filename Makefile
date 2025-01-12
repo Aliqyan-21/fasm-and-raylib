@@ -3,3 +3,9 @@ main: main.o
 
 main.o: main.asm
 	fasm main.asm
+
+clean:
+	rm main main.o
+
+run:
+	./main
