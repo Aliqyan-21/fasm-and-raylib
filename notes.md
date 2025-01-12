@@ -70,3 +70,11 @@
 | ------------ | ------------- | --------------------------------------- |
 | x87 FPU      | ST0 to ST7    | Stack of 8 floating-point registers     |
 | SSE          | XMM0 to XMM15 | 128-bit registers for SIMD instructions |
+
+### Comparison Table b\w mov, movq & movd
+
+| Instruction | Data Size | Usage Context   | Example                                |
+| ----------- | --------- | --------------- | -------------------------------------- |
+| mov         | Varies    | General-purpose | mov rax, rbx or mov eax, [someVar]     |
+| movq        | 64-bit    | SSE             | movq xmm0, rax or movq xmm1, [someVar] |
+| movd        | 32-bit    | MMX/SSE         | movd xmm0, eax or movd xmm1, [someVar] |
