@@ -31,14 +31,12 @@ _start:
   call ClearBackground
 
   call GetFrameTime
+  shufps xmm0, xmm0, 0
   movq xmm1, [velocity]
-  movq xmm2, [velocity+4]
-  mulss xmm1, xmm0
-  mulss xmm2, xmm0
-  addss xmm1, [position]
-  addss xmm2, [position+4]
-  movq [position], xmm1
-  movq [position+4], xmm1
+  movq xmm2, [position]
+  mulps xmm1, xmm0
+  addps xmm2, xmm1
+  movq [position], xmm2
 
   ; position
   mov rax, [position]
