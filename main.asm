@@ -11,7 +11,7 @@ extrn CloseWindow
 extrn BeginDrawing
 extrn EndDrawing
 extrn ClearBackground
-extrn DrawRectangle
+extrn DrawRectangleV
 
 _start:
   mov rdi, 800
@@ -29,12 +29,17 @@ _start:
     mov rdi, 0xff1c1c1c
     call ClearBackground
 
-    mov rdi, 300        ; x-axis
-    mov rsi, 200        ; y-axis
-    mov rdx, 200        ; width
-    mov rcx, 200        ; height
-    mov r8, 0xffa1a1a1  ; color
-    call DrawRectangle
+    ; position
+    mov rax, [position]
+    movq xmm0, rax
+
+    ; size
+    mov rax, [size]
+    movq xmm1, rax
+
+    ; color
+    mov rdi, 0xffa1a1a1
+    call DrawRectangleV
 
     call EndDrawing
   jmp .again
@@ -47,3 +52,11 @@ _start:
 
 section '.data' writable
 title: db "Hello Raylib from asm"
+
+position:
+dd 0.0
+dd 0.0
+
+size:
+dd 200.0
+dd 200.0
