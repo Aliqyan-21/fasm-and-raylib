@@ -12,6 +12,7 @@ extrn BeginDrawing
 extrn EndDrawing
 extrn ClearBackground
 extrn DrawRectangleV
+extrn GetFrameTime
 
 _start:
   mov rdi, 800
@@ -28,6 +29,16 @@ _start:
     call BeginDrawing
     mov rdi, 0xff1c1c1c
     call ClearBackground
+
+    call GetFrameTime
+    movq xmm1, [velocity]
+    movq xmm2, [velocity+4]
+    mulss xmm1, xmm0
+    mulss xmm2, xmm0
+    addss xmm1, [position]
+    addss xmm2, [position+4]
+    movq [position], xmm1
+    movq [position+4], xmm1
 
     ; position
     mov rax, [position]
@@ -53,9 +64,14 @@ _start:
 section '.data' writable
 title: db "Hello Raylib from asm"
 
+; vector2
 position:
 dd 0.0
 dd 0.0
+
+velocity:
+dd 20.0
+dd 20.0
 
 size:
 dd 200.0
