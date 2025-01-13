@@ -32,19 +32,17 @@ _start:
 
   call GetFrameTime
   shufps xmm0, xmm0, 0
-  movq xmm1, [velocity]
-  movq xmm2, [position]
+  movups xmm1, [velocity]
+  movups xmm2, [position]
   mulps xmm1, xmm0
   addps xmm2, xmm1
-  movq [position], xmm2
+  movups [position], xmm2
 
   ; position
-  mov rax, [position]
-  movq xmm0, rax
+  movups xmm0, [position]
 
   ; size
-  mov rax, [size]
-  movq xmm1, rax
+  movups xmm1, [size]
 
   ; color
   mov rdi, 0xffa1a1a1
@@ -60,17 +58,29 @@ _start:
 
 
   section '.data' writable
-title: db "Hello Raylib from asm"
+title: db "Hello Raylib from asm", 0
 
-  ; vector2
+; vector2
 position:
+  dd 0.0
+  dd 0.0
   dd 0.0
   dd 0.0
 
 velocity:
-  dd 20.0
-  dd 20.0
+  dd 200.0
+  dd 200.0
+  dd 0.0
+  dd 0.0
 
 size:
   dd 200.0
   dd 200.0
+  dd 0.0
+  dd 0.0
+
+zero:
+  dd 0.0
+  dd 0.0
+  dd 0.0
+  dd 0.0
